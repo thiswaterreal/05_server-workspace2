@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+		/* JDBC 메소드 모음집 */
+
 public class JDBCTemplate {
 
 	// 1. Connection 객체 생성한 후 해당 Connection 객체를 반환 시켜주는 getConnection 메소드

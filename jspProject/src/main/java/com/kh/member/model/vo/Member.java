@@ -3,7 +3,8 @@ package com.kh.member.model.vo;
 import java.sql.Date;
 
 public class Member {
-	// DB => 테이블 => MEMBER 참고해서 작성
+
+	// 필드부
 	private int userNo;
 	private String userId;
 	private String userPwd;
@@ -16,7 +17,6 @@ public class Member {
 	private Date modifyDate;
 	private String status;
 	
-	// 기본생성자, 매개변수생성자(o), setter/getter(r), toString(s)	+ ctrl shift s
 	public Member() {}
 
 	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email,
@@ -128,7 +128,7 @@ public class Member {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", phone=" + phone + ", email=" + email + ", address=" + address + ", interest=" + interest
 				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
-	}
+	};
 	
 	
 	

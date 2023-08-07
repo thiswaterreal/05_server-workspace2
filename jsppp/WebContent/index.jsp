@@ -9,12 +9,11 @@
 <body>
 
 	<!-- index.jsp 에서 include로 연결했기때문에 여기가 메인 페이지 -->
+	<!-- http://localhost:8001/jsppp/ -->
 	
     <h1>로그인 성공해보쟝구</h1>
 
-    <div class="login-area">
-
-        <!-- case1. 로그인 전 -->
+    <div>
         <form action="/jsppp/login.lo" method="post">
             <table>
                 <tr>
@@ -33,7 +32,7 @@
                 </tr>
             </table>
         </form>
-       
+    </div>   
 
 </body>
 </html>

@@ -11,10 +11,12 @@ import java.util.Properties;
 import com.kh.common.JDBCTemplate;
 import com.kh.member.model.vo.Member;
 
+
+
 public class MemberDao {
 
 	private Properties prop = new Properties();
-	public MemberDao() {  // 기본생성자. MemberDao() 호출될때마다 계속 불러들임
+	public MemberDao() { // 기본생성자. MemberDao() 호출될때마다 계속 불러들임
 		String filePath = MemberDao.class.getResource("/db/sql/member-mapper.xml").getPath();
 		
 		try {
@@ -25,10 +27,11 @@ public class MemberDao {
 	}
 	
 	public Member loginMember(Connection conn, String userId, String userPwd) {
-		// select문 => ResultSet 객체 (한행) => Member 객체로 받을 수 있음
-		Member m = null;	// Member 객체 m
 		
-		// 쿼리 돌려야하니까
+		// select문 => ResultSet 객체 (한행) => Member 객체로 받을 수 있음
+		Member m = null;
+		
+		// 쿼리(sql) 실행 준비
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -38,33 +41,36 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);	// 미완성 쿼리 ('?' 들어있음)
 			
 			pstmt.setString(1, userId);
-			pstmt.setString(2, userPwd);	// 이제 완성
+			pstmt.setString(2, userPwd);		// 이제 완성
 			
 			rset = pstmt.executeQuery();	// 실행. 조회된 결과가 있다면 한행 | 조회된 결과가 없다고 하면 아무것도 안담김
 			
 			if(rset.next()) {	// (true) 커서깜박이 이동했다 == 조회된 결과가 있다
+				//m = new Member();
 				m = new Member(rset.getInt("user_no"),
-							   rset.getString("user_id"),
-							   rset.getString("user_Pwd"),
-							   rset.getString("user_name"),
-							   rset.getString("phone"),
-							   rset.getString("email"),
-							   rset.getString("address"),
-							   rset.getString("interest"),
-							   rset.getDate("enroll_date"),
-							   rset.getDate("modify_date"),
-							   rset.getString("status"));
+						   	   rset.getString("user_id"),
+						   	   rset.getString("user_Pwd"),
+						   	   rset.getString("user_name"),
+						   	   rset.getString("phone"),
+						   	   rset.getString("email"),
+						   	   rset.getString("address"),
+						   	   rset.getString("interest"),
+						   	   rset.getDate("enroll_date"),
+						   	   rset.getDate("modify_date"),
+						   	   rset.getString("status"));
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		} finally {	//// close, return, 자료형변경
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
 		
 		return m;
-		
+
 	}
+	
+	
 	
 }

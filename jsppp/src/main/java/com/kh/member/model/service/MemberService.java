@@ -15,10 +15,11 @@ public class MemberService {
 		
 		Member m = new MemberDao().loginMember(conn, userId, userPwd);
 	
+		//// Member m = 로 받고, close, return, 자료형변경
+		
 		JDBCTemplate.close(conn);
 		
 		return m;
 	}
-	
 	
 }
