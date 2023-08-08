@@ -16,6 +16,7 @@ import com.kh.member.model.vo.Member;
 public class MemberDao {
 
 	private Properties prop = new Properties();
+	
 	public MemberDao() { // 기본생성자. MemberDao() 호출될때마다 계속 불러들임
 		String filePath = MemberDao.class.getResource("/db/sql/member-mapper.xml").getPath();
 		
