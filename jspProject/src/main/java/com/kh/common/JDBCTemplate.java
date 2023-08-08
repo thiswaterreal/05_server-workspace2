@@ -16,7 +16,7 @@ public class JDBCTemplate {
 	// 1. Connection 객체 생성한 후 해당 Connection 객체를 반환 시켜주는 getConnection 메소드
 	public static Connection getConnection() {	// 반환형 메소드이름
 		
-		System.out.println("getConnection 탔음");
+		//System.out.println("getConnection 탔음");
 		
 		Connection conn = null;
 		

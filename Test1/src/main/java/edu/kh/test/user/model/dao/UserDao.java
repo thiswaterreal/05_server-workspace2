@@ -10,7 +10,7 @@ import edu.kh.test.user.model.vo.User;
 
 public class UserDao {
 	
-	// 조회 메소드
+	// *조회 메소드
 	public User selectUser(Connection conn, int userNo) {
 		
 		//select문 => ResultSet 객체 필요 => 한행 조회 => 따라서, User 객체 하나 있으면 됨
@@ -37,6 +37,7 @@ public class UserDao {
 						        rset.getString("user_id"),
 						        rset.getString("user_name"),
 						        rset.getInt("user_age"));
+				// User 객체 : 해당 사용자 정보를 담고 있음
 			}
 			
 			
@@ -52,7 +53,7 @@ public class UserDao {
 	}
 	
 	
-	// 로그인 메소드
+	// *로그인 메소드
 	public User loginUser(Connection conn, String userId, int age) {
 		
 		PreparedStatement pstmt = null;
@@ -63,6 +64,7 @@ public class UserDao {
 		String sql = "SELECT * FROM TB_USER WHERE USER_ID = ? AND USER_AGE = ?";
 		
 		try {
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, userId);

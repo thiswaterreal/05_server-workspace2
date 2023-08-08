@@ -15,7 +15,9 @@ import edu.kh.test.user.model.vo.User;
 /**
  * Servlet implementation class SelectUserServlet
  */
+
 @WebServlet("/test.do")
+
 public class SelectUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,7 +52,9 @@ public class SelectUserServlet extends HttpServlet {
 		}else {
 			// 조회 성공
 			request.setAttribute("user", user);	//("키값", user담김것) user객체하나를 "user"키값에 담고 attribute에 셋팅해둠
+			// "user" 속성에 user라는 값을 할당. 이를 통해 서블릿 또는 JSP 페이지에서 "user"라는 키값을 사용하여 user 객체에 접근할 수 있음
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/searchSuccess.jsp");
+			// "WEB-INF/views/searchSuccess.jsp" 경로에 있는 JSP 페이지로 전달할 수 있는 RequestDispatcher 객체
 			view.forward(request, response);
 		}
 		
