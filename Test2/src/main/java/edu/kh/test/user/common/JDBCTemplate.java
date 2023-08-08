@@ -14,7 +14,7 @@ public class JDBCTemplate {
 		Connection conn = null;
 		
 		try {
-			// 클래스 등록
+			// 클래스 등록(드라이버)
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "TEST1", "TEST1");
 		} catch (ClassNotFoundException e) {
