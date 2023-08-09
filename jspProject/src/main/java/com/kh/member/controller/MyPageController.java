@@ -39,7 +39,7 @@ public class MyPageController extends HttpServlet {
 		if(session.getAttribute("loginMember") == null) { // 로그인 전
 			session.setAttribute("alertMsg", "로그인 후 이용 가능한 서비스 입니다.");
 			response.sendRedirect(request.getContextPath()); // (/jsp)메인화면으로 날라감
-		}else { // 로그인 후 (loginMember에 userId, userPwd 담김)
+		}else { // 로그인 후 (loginMember에 회원정보(m값) 담김) 마이페이지를 누를시
 			
 			RequestDispatcher view = request.getRequestDispatcher("views/member/myPage.jsp");
 			view.forward(request, response);

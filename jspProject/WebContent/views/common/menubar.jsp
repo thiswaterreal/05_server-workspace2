@@ -99,9 +99,11 @@
 	            <script>
 	            	function enrollPage() {	<!-- 회원가입 버튼 누르면 -->
 	            		// location.href = "<%= contextPath%>/views/member/memberEnrollForm.jsp";
+	            		// http://localhost:8001/jsp/views/member/memberEnrollForm.jsp
 	            		// 웹 애플리케이션의 디렉토리 구조가 url에 노출되면 보안에 취약. 따라서 이거 안쓰고
 	            		
 	            		// 단순한 페이지 요청도 servlet 호출해서 servlet 거쳐갈 것! (즉, url에는 서블릿 매핑값만 노출)
+	            		// http://localhost:8001/jsp/enrollForm.me
 	            		location.href = "<%= contextPath%>/enrollForm.me";
 	            		
 	            	}
