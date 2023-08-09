@@ -17,8 +17,10 @@ public class Member {
 	private Date modifyDate;
 	private String status;
 	
-	public Member() {}
-
+	// 기본생성자
+	public Member() {}	// 반환형 없으니까 생성자. 있으면 메소드.
+	
+	// 매개변수생성자 (전체)
 	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email,
 			String address, String interest, Date enrollDate, Date modifyDate, String status) {
 		super();
@@ -33,6 +35,19 @@ public class Member {
 		this.enrollDate = enrollDate;
 		this.modifyDate = modifyDate;
 		this.status = status;
+	}
+	
+	// 매개변수생성자 (회원가입시 필요한 7개짜리)
+	public Member(String userId, String userPwd, String userName, String phone, String email, String address,
+			String interest) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.interest = interest;
 	}
 
 	public int getUserNo() {

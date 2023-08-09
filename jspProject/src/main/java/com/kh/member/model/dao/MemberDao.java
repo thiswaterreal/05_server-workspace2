@@ -8,16 +8,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.kh.common.JDBCTemplate;
+//import com.kh.common.JDBCTemplate;
+import static com.kh.common.JDBCTemplate.*;
 import com.kh.member.model.vo.Member;
 
 public class MemberDao {
 
+	// prop 객체 생성
 	private Properties prop = new Properties();
-	public MemberDao() {  // 기본생성자. MemberDao() 호출될때마다 계속 불러들임
+	
+	public MemberDao() {  // 기본생성자. MemberDao() 호출될때마다 계속 이 기본생성자 불러들임 / 반환형 없으니까 생성자. 
+		
+		// 해당 위치에서 .class에 접근해서 저 파일 갖다줘
 		String filePath = MemberDao.class.getResource("/db/sql/member-mapper.xml").getPath();
 		
 		try {
+			// prop 채우기
 			prop.loadFromXML(new FileInputStream(filePath));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -28,22 +34,26 @@ public class MemberDao {
 		// select문 => ResultSet 객체 (한행) => Member 객체로 받을 수 있음
 		Member m = null;	// Member 객체 m
 		
-		// 쿼리 돌려야하니까
+		// 쿼리 돌려야하니까 준비
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("loginMember");
+		String sql = prop.getProperty("loginMember");	// "키값"을 통해 value(select~)를 가져와서 sql에 담음
 		
 		try {
-			pstmt = conn.prepareStatement(sql);	// 미완성 쿼리 ('?' 들어있음)
+			pstmt = conn.prepareStatement(sql);	// 미완성 쿼리 ('?' 들어있음) // 규칙 구문
 			
 			pstmt.setString(1, userId);
-			pstmt.setString(2, userPwd);	// 이제 완성
+			pstmt.setString(2, userPwd);	// 이제 완성 (.setInt 놓치지 않기)("userId" 이건 딱 이 값을 넣는거니까 변수 userId(사용자가 입력하는 값)로 작성)
 			
 			rset = pstmt.executeQuery();	// 실행. 조회된 결과가 있다면 한행 | 조회된 결과가 없다고 하면 아무것도 안담김
 			
 			if(rset.next()) {	// (true) 커서깜박이 이동했다 == 조회된 결과가 있다
-				m = new Member(rset.getInt("user_no"),
+				// new Member() == 기본생성자 호출
+				// new Member(어쩌고, 저쩌고, ...) == 매개변수생성자 호출 / 반드시 vo에 원하는 매개변수생성자 있어야함
+				// rset에는 db의 컬럼이 들어가 있음. 따라서 ("user_no") <= db컬럼과 동일해야함(단, 대소문자상관x)!! 안그럼 부적절한 index 오류 뜸
+				// 뽑아온 값을 null로 초기화해둔 m에 담아
+				m = new Member(rset.getInt("user_no"),	
 							   rset.getString("user_id"),
 							   rset.getString("user_Pwd"),
 							   rset.getString("user_name"),
@@ -59,12 +69,46 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
+			/*JDBCTemplate.*/close(rset);
+			/*JDBCTemplate.*/close(pstmt);
 		}
 		
 		return m;
+	
+	}
+	
+	
+	public int insertMember(Connection conn, Member m) {
+		
+		// insert문 => 처리된 행 수 => 트렌젝션 처리
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertMember"); // "entry 키값"
+		
+		try {
+			pstmt = conn.prepareStatement(sql);  // 쿼리를 불러오고 (미완성)
+			
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserPwd());
+			pstmt.setString(3, m.getUserName());
+			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5, m.getEmail());
+			pstmt.setString(6, m.getAddress());
+			pstmt.setString(7, m.getInterest());	// (완성)
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); /*jdbctemplate 생략*/
+		}
+		
+		return result;
 		
 	}
+	
 	
 }

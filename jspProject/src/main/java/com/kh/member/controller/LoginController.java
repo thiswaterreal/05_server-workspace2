@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
@@ -33,8 +34,8 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 1) 전달값에 '한글'이 있을 경우 인코딩 처리해야됨 (POST방식에만)
-		// request.setCharacterEncoding("UTF-8");	// 아이디,비번 다 영어숫자니까 필요x
+		// 1) 전달값에 '한글'이 있을 경우 인코딩 처리해야됨 (POST방식에만!!) // 아이디,비번 다 영어숫자니까 필요x
+		// request.setCharacterEncoding("UTF-8");	// (GET)header : utf-8 | (POST)body : ms949
 		
 		// 2) 요청시 전달값 뽑아서 변수 또는 객체에 기록하기
 		String userId = request.getParameter("userId");
@@ -54,21 +55,42 @@ public class LoginController extends HttpServlet {
 		 * 3) request		: 여기에 담긴 데이터는 현재 이 request 객체를 '포워딩한 응답 jsp에서만' 꺼내쓸 수 있음 (일회성 느낌)
 		 * 4) page			: 해당 jsp에서 담고 그 jsp에서만 꺼내쓸 수 있음
 		 * 
-		 * 공통적으로 데이터를 담고자 한다면 .setAttribute("키", 벨류)
+		 * 공통적으로 데이터를 담고자 한다면   .setAttribute("키", 벨류)
 		 * 		   데이터를 꺼내고자 한다면 .getAttribute("키") : 벨류 반환. (object 타입으로) 
 		 * 		   데이터를 지우고자 한다면 .removeAttribute("키")
 		 */
 		
 		
 		if(loginMember == null) {
-			// 조회결과 없음 == 로그인 실패!! => 에러문구가 보여지는 에러페이지 응답
-			request.setAttribute("errorMsg", "로그인 실패");	// 키-벨류
+			// * 조회결과 없음 == 로그인 실패!! => 에러문구가 보여지는 에러페이지 응답
+			
+			request.setAttribute("errorMsg", "로그인 실패");	// "키"-벨류
 			// 응답페이지(jsp)에게 위임시 필요한 객체 => RequestDispatcher
 			// 그 다음, 포워딩 방식
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 		}else {
-			// 조회결과 있음 == 로그인 성공!!
+			// * 조회결과 있음 == 로그인 성공!! => 메인페이지 응답 (index.jsp)
+			
+			// 로그인한 회원정보 (loginMember)를 session에 담기 (여기저기서 가져다 쓸 수 있도록!)
+			
+			// Servlet에서는 session에 접근하고자 한다면 우선 session 객체 얻어와야됨 (request 도움을 받아서)
+			HttpSession session = request.getSession();	// request야.. session객체 얻어다 줘..
+			session.setAttribute("loginMember", loginMember); //"키",벨류(login한 멤버객체)
+			
+			// 1. '포워딩 방식' 응답 뷰 출력
+			// 해당 선택된 jsp가 보여질 뿐 url에는 여전히 현재 이 서블릿 매핑값이 남아있음
+			// (현재)localhost:8001/jsp/login.me	=>	localhost:8001/jsp (이렇게 바꾸고 싶음)
+			//RequestDispatcher view = request.getRequestDispatcher("index.jsp"); // "WebContent/" 생략
+			//view.forward(request, response);
+			
+			// 2. 'url 재요청 방식' (sendRedirect 방식)
+			// 기존에 저 페이지를 응답하는 url이 존재한다면 사용 가능
+			// localhost:8001/jsp
+			
+			//response.sendRedirect("/jsp"); 	//방법1
+			response.sendRedirect(request.getContextPath()); // "/jsp"    //방법2
+			
 		}
 		
 

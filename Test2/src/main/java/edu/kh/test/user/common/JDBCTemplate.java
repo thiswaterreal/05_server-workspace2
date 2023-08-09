@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class JDBCTemplate {
 
-	
+	/**/
 	public static Connection getConnection() {
 		
 		Connection conn = null;
@@ -27,6 +27,7 @@ public class JDBCTemplate {
 	}
 	
 	
+	/**/
 	public static void close(Connection conn) {
 		try {
 			if(conn != null && !conn.isClosed()) {
@@ -38,6 +39,7 @@ public class JDBCTemplate {
 	}
 	
 	
+	/**/
 	public static void close(Statement stmt) {
 		try {
 			if(stmt != null && !stmt.isClosed()) {
@@ -49,6 +51,7 @@ public class JDBCTemplate {
 	}
 	
 	
+	/**/
 	public static void close(ResultSet rset) {
 		try {
 			if(rset != null && !rset.isClosed()) {
@@ -58,6 +61,13 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

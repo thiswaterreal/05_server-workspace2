@@ -12,6 +12,7 @@ public class Dao {
 
 	public User searchUser(Connection conn, int userNo) {
 		
+		// 필요한 객체 맹글고
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		User u = null;
