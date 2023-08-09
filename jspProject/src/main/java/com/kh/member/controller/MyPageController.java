@@ -35,7 +35,7 @@ public class MyPageController extends HttpServlet {
 		// 로그인 전 요청시 => 메인페이지 응답, alert 띄우기 => url재요청 (request x)!!!!기억!!!!
 		// 로그인 후 요청시 => 마이페이지 응답			  => 포워딩
 		
-		HttpSession session = request.getSession(); //심부름코드 세션불러와
+		HttpSession session = request.getSession(); //심부름코드 세션불러와줘
 		if(session.getAttribute("loginMember") == null) { // 로그인 전
 			session.setAttribute("alertMsg", "로그인 후 이용 가능한 서비스 입니다.");
 			response.sendRedirect(request.getContextPath()); // (/jsp)메인화면으로 날라감

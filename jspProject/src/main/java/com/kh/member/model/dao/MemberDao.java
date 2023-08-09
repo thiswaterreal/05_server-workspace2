@@ -38,7 +38,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("loginMember");	// "키값"을 통해 value(select~)를 가져와서 sql에 담음
+		String sql = prop.getProperty("loginMember");	// "키값"을 통해 value(SELECT~)를 가져와서 sql에 담음
 		
 		try {
 			pstmt = conn.prepareStatement(sql);	// 미완성 쿼리 ('?' 들어있음) // 규칙 구문
@@ -51,7 +51,7 @@ public class MemberDao {
 			if(rset.next()) {	// (true) 커서깜박이 이동했다 == 조회된 결과가 있다
 				// new Member() == 기본생성자 호출
 				// new Member(어쩌고, 저쩌고, ...) == 매개변수생성자 호출 / 반드시 vo에 원하는 매개변수생성자 있어야함
-				// rset에는 db의 컬럼이 들어가 있음. 따라서 ("user_no") <= db컬럼과 동일해야함(단, 대소문자상관x)!! 안그럼 부적절한 index 오류 뜸
+				// rset에는 db의 컬럼이 들어가 있음. 따라서 ("user_no") <= db컬럼과 동일해야함(단, 대소문자상관x)!! 안그럼 '부적절한 index 오류' 뜸
 				// 뽑아온 값을 null로 초기화해둔 m에 담아
 				m = new Member(rset.getInt("user_no"),	
 							   rset.getString("user_id"),

@@ -29,9 +29,12 @@ public class LogoutController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 로그아웃 요청 처리 : session 만료시키기 == session을 null로 만들어서 무효화 시키기
-		//(한줄로) request.getSession().invalidate();
-		HttpSession session = request.getSession();
-		session.invalidate();	// 세션.초기화();
+		
+		//HttpSession session = request.getSession();
+		//session.invalidate();	// 세션.초기화();
+		//(위 두줄을 한줄로)
+		request.getSession().invalidate();
+		
 		// 응답페이지 => index.jsp 페이지 => url 재요청(한번이라도 본 화면이면 가능)
 		response.sendRedirect(request.getContextPath());
 		

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@page import="com.kh.member.model.vo.Member"%>
+
 <% 
 	String contextPath = request.getContextPath();	// contextPath == /jsp	// root
 
@@ -12,7 +13,6 @@
 	String alertMsg = (String)session.getAttribute("alertMsg"); // Object반환형. 형변환필수
 	// 서비스 요청 전(예)로그인 전) menubar.jsp 로딩시 : null
 	// 서비스 성공 후(예)로그인 후) menubar.jsp 로딩시 : alert로 띄워줄 메시지 문구
-	
 %>
 
 <!DOCTYPE html>

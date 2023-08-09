@@ -34,8 +34,8 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 1) 전달값에 '한글'이 있을 경우 인코딩 처리해야됨 (POST방식에만!!) // 아이디,비번 다 영어숫자니까 필요x
-		// request.setCharacterEncoding("UTF-8");	// (GET)header : utf-8 | (POST)body : ms949
+		// 1) 전달값에 '한글'이 있을 경우 인코딩 처리해야됨 (POST방식 | '한글'들어갈때) 	// (GET)header : utf-8 | (POST)body : ms949
+		// request.setCharacterEncoding("UTF-8");
 		
 		// 2) 요청시 전달값 뽑아서 변수 또는 객체에 기록하기
 		String userId = request.getParameter("userId");
@@ -79,18 +79,18 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("loginMember", loginMember); //"키",벨류(login한 멤버객체)
 			
 			// 1. '포워딩 방식' 응답 뷰 출력
-			// 해당 선택된 jsp가 보여질 뿐 url에는 여전히 현재 이 서블릿 매핑값이 남아있음
-			// (현재)localhost:8001/jsp/login.me	=>	localhost:8001/jsp (이렇게 바꾸고 싶음)
+			// 해당 선택된 jsp가 보여질 뿐 url에는 여전히 현재 이 서블릿 매핑값(/login.me)이 남아있음
 			//RequestDispatcher view = request.getRequestDispatcher("index.jsp"); // "WebContent/" 생략
 			//view.forward(request, response);
+			// (현재)localhost:8001/jsp/login.me	=>	localhost:8001/jsp (이렇게 바꾸고 싶음 == url재요청방식)
 			
 			// 2. 'url 재요청 방식' (sendRedirect 방식)
-			// 기존에 저 페이지를 응답하는 url이 존재한다면 사용 가능
+			// 기존에 저 페이지를 응답하는 url이 존재한다면 사용 가능 (한번이라도 본 화면이면 가능)
 			// localhost:8001/jsp
 			
 			//response.sendRedirect("/jsp"); 	//방법1
 			response.sendRedirect(request.getContextPath()); // "/jsp"    //방법2
-			
+			//사용자에게보내는응답.url로이동해라(기본웹루트==/jsp)
 		}
 		
 
