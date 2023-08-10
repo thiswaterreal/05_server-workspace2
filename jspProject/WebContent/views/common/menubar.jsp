@@ -51,7 +51,7 @@
 
 </style>
 
-
+<!-- 부트스트랩 -->
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <!-- jQuery library -->
@@ -70,12 +70,12 @@
 	
 	<!-- 알람창 빵! 세션 -->
 	<!-- alertMsg 이거 쓸라면 맨위에서 변수에 담아두고 사용!! -->
-	<% if(alertMsg != null) { %> <!-- "alertMsg"키값으로 한 벨류값이 있을 때 -->
+	<% if(alertMsg != null) { %> <!-- "alertMsg"키값으로 한 벨류값이 있을 때 (알람띄울게 있을 때) -->
 		
 		<script>
 			alert("<%= alertMsg %>");
 		</script>
-		<!-- 한번 띄워줬으니까 계속 뜨지 않도록 세션 지우기 -->
+		<!-- 어떤 알람창이든 한번 띄워줬으면 계속 뜨지 않도록 세션 지우기 -->
 		<% session.removeAttribute("alertMsg"); %>
 		
 	<% } %>

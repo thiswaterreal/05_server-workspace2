@@ -38,6 +38,7 @@ public class MemberUpdatePwdController extends HttpServlet {
 		String updatePwd = request.getParameter("updatePwd");
 		
 		Member updateMem = new MemberService().updatePwd(userId, userPwd, updatePwd);
+		
 		// * updateMem 으로 받아와서 세션 갈아끼우기 *
 		HttpSession session = request.getSession();
 		

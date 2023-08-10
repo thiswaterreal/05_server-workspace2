@@ -21,7 +21,7 @@ public class JDBCTemplate {
 		Connection conn = null;
 		
 		// > 'driver.properties' 파일 만들고 와서, properties 객체 만들기
-		Properties prop = new Properties();	// Map 계열 컬렉션 (key-value)
+		Properties prop = new Properties();	
 		
 		// > 읽어들이고자 하는 classes 폴더 내에 'driver.properties' 파일의 물리적인 경로. (규칙)
 		// C:/05_server-workspace2/jspProject/WebContent/classes/db/driver/driver.properties

@@ -44,7 +44,7 @@ public class LoginController extends HttpServlet {
 		// 3) 요청처리 (db에 sql문 실행)
 		//	  해당 요청을 처리하는 서비스 클래스의 메소드 호출 및 결과 받기
 		Member loginMember = new MemberService().loginMember(userId, userPwd);
-		System.out.println(loginMember);
+		System.out.println(loginMember); //Member [userNo=4, userId=user06, userPwd=pass06, userName=이둥이, phone=01088887777, email=doong@naver.com, address=반룡마을, interest=운동, enrollDate=2023-08-10, modifyDate=2023-08-10, status=Y]
 		
 		// 4) 처리된 결과를 가지고 사용자가 보게 될 응답뷰(jsp) 지정 후 포워딩 또는 url 재요청
 		/*
@@ -76,7 +76,7 @@ public class LoginController extends HttpServlet {
 			
 			// Servlet에서는 session에 접근하고자 한다면 우선 session 객체 얻어와야됨 (request 도움을 받아서)
 			HttpSession session = request.getSession();	// request야.. session객체 얻어다 줘..
-			session.setAttribute("loginMember", loginMember); //"키",벨류(login한 멤버객체)
+			session.setAttribute("loginMember", loginMember); //"키",벨류(login한 멤버 정보)
 			
 			// 1. '포워딩 방식' 응답 뷰 출력
 			// 해당 선택된 jsp가 보여질 뿐 url에는 여전히 현재 이 서블릿 매핑값(/login.me)이 남아있음
@@ -90,7 +90,7 @@ public class LoginController extends HttpServlet {
 			
 			//response.sendRedirect("/jsp"); 	//방법1
 			response.sendRedirect(request.getContextPath()); // "/jsp"    //방법2
-			//사용자에게보내는응답.url로이동해라(기본웹루트==/jsp)
+			//사용자에게보내는응답.url로이동해라(프로젝트루트 /jsp = 메인페이지 index.jsp(즉, menubar.jsp))
 		}
 		
 

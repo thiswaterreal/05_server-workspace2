@@ -80,7 +80,7 @@ public class MemberDao {
 	
 	public int insertMember(Connection conn, Member m) {
 		
-		// insert문 => 처리된 행 수(반환) => 트렌젝션 처리
+		// insert문 => 처리된 행 수(반환) => 트렌젝션 처리(삽입, 업데이트, 삭제)
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -146,7 +146,7 @@ public class MemberDao {
 	}
 	
 	
-	public Member selectMember(Connection conn, String userId) { // 이름 내맘대로, m.getUserId() 반환형 String이니까 맞춤
+	public Member selectMember(Connection conn, String userId) { // * 이름 내맘대로, m.getUserId() 반환형 String이니까 맞춤 *
 		// select문 => 한행 => ResultSet 객체 => Member 객체
 		
 		Member m = null;
@@ -176,7 +176,7 @@ public class MemberDao {
 						   rset.getDate("enroll_date"),
 						   rset.getDate("modify_date"),
 						   rset.getString("status"));
-			} // m : 갱신된 회원 정보 다시 조회해서 그 정보 담음
+			} // * m : 갱신된 회원 정보 다시 조회해서 그 정보 담음 *
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -196,6 +196,7 @@ public class MemberDao {
 		// entry 추가하고 옴
 
 		int result = 0;
+		
 		PreparedStatement pstmt = null;
 		
 		String sql = prop.getProperty("updatePwd");

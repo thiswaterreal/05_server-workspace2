@@ -38,7 +38,7 @@ public class MemberOutController extends HttpServlet {
 		
 		int result = new MemberService().outMember(userId, userPwd);
 		
-		if(result > 0) { // 성공
+		if(result > 0) { // 회원탈퇴 성공
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "성공적으로 회원탈퇴 되었습니다. 그동안 이용해주셔서 감사합니다.");

@@ -25,6 +25,7 @@ public class MemberService {
 	public int insertMember(Member m) {
 		
 		Connection conn = getConnection(); 		/*JDBCTemplate. 생략*/
+		
 		int result = new MemberDao().insertMember(conn, m);
 	
 		// (DML문이니까) 트랜젝션 처리
@@ -47,11 +48,11 @@ public class MemberService {
 		
 		Member updateMem = null;
 		
-		if(result > 0) { // 성공
+		if(result > 0) { // 정보수정 성공
 			commit(conn);
 			
 			// 커밋=확정 후,
-			// * 갱신된 회원 객체 다시 조회 해오기 + 결과 받아*
+			// * 갱신된 회원 객체 다시 조회 해오기 + 결과 받아 *
 			updateMem = new MemberDao().selectMember(conn, m.getUserId()); // dao에서 쿼리 돌려야하니까 conn 필요. 조회해야되니까 m 속 id필요
 			
 		}else { // 실패
@@ -73,7 +74,7 @@ public class MemberService {
 		
 		Member updateMem = null;
 		
-		if(result > 0) { // 성공
+		if(result > 0) { // 비밀번호변경 성공
 			commit(conn);
 			
 			// 바뀐 비밀번호 확정 후,

@@ -51,9 +51,11 @@ public class MemberUpdateController extends HttpServlet {
 		}
 		// 너무 많으니까 m에 담아
 		Member m = new Member(userId, userName, phone, email, address, interest);
-	
+		System.out.println("m 누구냐?? : " + m);
+		
 		// 서비스 호출
 		Member updateMem = new MemberService().updateMember(m);
+
 		
 		if(updateMem != null) { // 성공 (8/10 10:23)
 			

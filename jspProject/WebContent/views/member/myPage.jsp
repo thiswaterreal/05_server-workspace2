@@ -23,6 +23,7 @@
 
 	<%@ include file = "../common/menubar.jsp" %>
 	<!-- menubar.jsp 에서 상단에 선언해뒀기때문에 여기서도 'loginMember' 맘대로 사용 가능 -->
+	<!-- 마이페이지는 당연히 로그인 후 접근가능한 페이지니까, menubar.jsp의 loginMember에는 로그인 성공한 그 회원의 정보가 담겨있음. 따라서 뽑아쓰기 가능 -->
 	<%
 		String userId = loginMember.getUserId();
 		String userName = loginMember.getUserName();

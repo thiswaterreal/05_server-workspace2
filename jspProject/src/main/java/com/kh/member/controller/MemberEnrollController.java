@@ -64,7 +64,7 @@ public class MemberEnrollController extends HttpServlet {
 		int result = new MemberService().insertMember(m);
 	
 		// 4) 처리결과를 가지고 사용자가 보게될 응답 뷰 지정 후, 포워딩 | url 재요청
-		if(result > 0) { // 성공 (12:33)
+		if(result > 0) { // 성공 (08/09 12:33)
 			
 			HttpSession session = request.getSession(); //심부름코드
 			session.setAttribute("alertMsg", "성공적으로 회원가입이 되었습니다.");	// request는 포워딩 방식일때만 가능!!
