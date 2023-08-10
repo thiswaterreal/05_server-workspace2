@@ -32,6 +32,7 @@ public class MemberEnrollFormController extends HttpServlet {
 		// 응답페이지(회원가입페이지)
 		// 포워드 방식으로
 		// 안심번호 느낌ㅋㅋㅋㅋ
+		// 회원가입페이지(memberEnrollForm.jsp)는 한번도 본 적 없으니까 포워딩방식으로
 		RequestDispatcher view = request.getRequestDispatcher("views/member/memberEnrollForm.jsp");
 		view.forward(request, response);
 	

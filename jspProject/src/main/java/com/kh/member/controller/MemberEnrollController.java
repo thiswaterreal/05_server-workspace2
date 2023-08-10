@@ -74,6 +74,7 @@ public class MemberEnrollController extends HttpServlet {
 			
 		}else { // 실패
 			request.setAttribute("errorMsg", "회원가입에 실패했습니다.");
+			
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 		}
