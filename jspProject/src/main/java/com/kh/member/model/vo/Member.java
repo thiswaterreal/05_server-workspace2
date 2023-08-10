@@ -49,6 +49,18 @@ public class Member {
 		this.address = address;
 		this.interest = interest;
 	}
+	
+	
+	// 매개변수생성자 (회원정보수정시 필요한 6개짜리)
+	public Member(String userId, String userName, String phone, String email, String address, String interest) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.interest = interest;
+	}
 
 	public int getUserNo() {
 		return userNo;

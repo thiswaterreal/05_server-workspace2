@@ -39,6 +39,77 @@ public class MemberService {
 		return result;
 	}
 	
+	public Member updateMember(Member m) {
+		
+		Connection conn = getConnection();	//JDBCTemplate 생략
+		
+		int result = new MemberDao().updateMember(conn, m);
+		
+		Member updateMem = null;
+		
+		if(result > 0) { // 성공
+			commit(conn);
+			
+			// 커밋=확정 후,
+			// * 갱신된 회원 객체 다시 조회 해오기 + 결과 받아*
+			updateMem = new MemberDao().selectMember(conn, m.getUserId()); // dao에서 쿼리 돌려야하니까 conn 필요. 조회해야되니까 m 속 id필요
+			
+		}else { // 실패
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		// * 갱신된 회원 정보를 다시 조회해서 담은 그 정보를 반환! *
+		return updateMem;
+	}
+	
+	
+	public Member updatePwd(String userId, String userPwd, String updatePwd) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updatePwd(conn, userId, userPwd, updatePwd);
+		
+		Member updateMem = null;
+		
+		if(result > 0) { // 성공
+			commit(conn);
+			
+			// 바뀐 비밀번호 확정 후,
+			// * 갱신된 회원 객체 다시 조회해오기 *
+			updateMem = new MemberDao().selectMember(conn, userId); // updateMem에 꼭 담기
+			
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return updateMem;
+		
+	}
+	
+	
+	public int outMember(String userId, String userPwd) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().outMember(conn, userId, userPwd);
+		
+		if(result > 0) { // 성공
+			commit(conn);
+		}else { // 실패
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	
 	
 	
 }
