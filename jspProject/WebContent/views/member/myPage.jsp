@@ -139,7 +139,7 @@
 	        
             <form action="<%= contextPath %>/updatePwd.me" method="post">
                 
-                <!-- hidden -->
+                <!-- hidden : value값 반드시 설정!!-->
                 <input type="hidden" name="userId" value="<%= userId %>">
                 
                 <table>
@@ -197,7 +197,7 @@
 	      <div class="modal-body" align="center">
             <form action="<%= contextPath %>/outMember.me" method="post">
             
-            	<!-- hidden -->
+            	<!-- hidden : value값 반드시 설정!!-->
                 <input type="hidden" name="userId" value="<%= userId %>">
             
                 <b>탈퇴 후 복구가 불가능 합니다. <br> 정말로 탈퇴하시겠습니까? </b> <br><br>

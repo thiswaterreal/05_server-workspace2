@@ -51,7 +51,7 @@ public class MemberUpdateController extends HttpServlet {
 		}
 		// 너무 많으니까 m에 담아
 		Member m = new Member(userId, userName, phone, email, address, interest);
-		System.out.println("m 누구냐?? : " + m);
+		System.out.println("m 누구냐?? : " + m); // 기존 myPage 에서는 처음 로그인정보 => 사이트에서 입력값 변경시 그때부터 myPage에서 변경된 상태로 update하기위해 이동!! 	
 		
 		// 서비스 호출
 		Member updateMem = new MemberService().updateMember(m);

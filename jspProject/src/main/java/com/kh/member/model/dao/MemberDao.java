@@ -238,7 +238,7 @@ public class MemberDao {
 			pstmt.setString(1, userId);
 			pstmt.setString(2, userPwd);
 			
-			result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate();  //.executeUpdate() 반환형 : int
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
