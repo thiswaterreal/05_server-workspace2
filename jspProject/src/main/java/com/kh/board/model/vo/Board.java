@@ -30,7 +30,7 @@ public class Board {
 	}
 	
 	
-	// 매개변수생성자(6개)
+	// 매개변수생성자(6개_게시판리스트 각 행마다 담길 값 조회시 필요)
 	public Board(int boardNo, String category, String boardTitle, String boardWriter, int count, String createDate) {
 		super();
 		this.boardNo = boardNo;

@@ -136,6 +136,9 @@ public class BoardListController extends HttpServlet {
 		//   vo에 'PageInfo' 만들어주기 (src안에)
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
+		
+		
+		
 		// * 현재 요청한 페이지 (currentPage)에 보여질 게시글 리스트 boardLimit 수만큼 조회해가기 (1페이지에 10개씩)
 		ArrayList<Board> list = new BoardService().selectList(pi);
 		
