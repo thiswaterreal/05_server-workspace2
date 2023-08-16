@@ -85,11 +85,11 @@ public class NoticeService {
 		return result;
 	}
 	
-	public int outNotice(Notice n) {
+	public int deleteNotice(int noticeNo) {
 		
 		Connection conn = getConnection();
 		
-		int result = new NoticeDao().outNotice(conn, n);
+		int result = new NoticeDao().deleteNotice(conn, noticeNo);
 		
 		if(result > 0) { // 성공
 			commit(conn);
