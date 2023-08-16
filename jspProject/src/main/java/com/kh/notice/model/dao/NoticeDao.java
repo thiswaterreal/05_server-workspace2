@@ -181,19 +181,19 @@ public class NoticeDao {
 		
 	}
 	
-	public int outNotice(Connection conn, Notice n) {
+	public int deleteNotice(Connection conn, int noticeNo) {
 		// update문 => 처리된 행수 반환 => 트랜젝션 처리
 		// entry 추가
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("outNotice");
+		String sql = prop.getProperty("deleteNotice");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, n.getNoticeNo());
+			pstmt.setInt(1, noticeNo);
 			
 			result = pstmt.executeUpdate();
 			

@@ -59,7 +59,7 @@
             <!-- 현재 로그인한 사용자가 해당 글을 쓴 본인일 경우 -->
             <% if(loginMember != null && n.getNoticeWriter().equals(loginMember.getUserId())) { %>
             <a href="<%= contextPath %>/updateForm.no?num=<%= n.getNoticeNo() %>" class="btn btn-sm btn-warning">수정하기</a>
-            <a href="<%= contextPath %>/outForm.no?num=<%= n.getNoticeNo() %>" class="btn btn-sm btn-danger">삭제하기</a>
+            <a href="<%= contextPath %>/delete.no?num=<%= n.getNoticeNo() %>" class="btn btn-sm btn-danger">삭제하기</a>
             
             <!-- 
             	삭제 구현 해보기
