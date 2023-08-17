@@ -131,9 +131,9 @@ public class BoardListController extends HttpServlet {
 		}
 		
 		// com.kh.common.model.vo.pageInfo
-		// * 페이징바를 만들 때 필요한 객체 생성
-		//   db로 들고가기위해 모아요
+		// * 페이징바를 만들 때 필요한 'PageInfo' 객체 생성
 		//   vo에 'PageInfo' 만들어주기 (src안에)
+		//   db로 들고가기위해 모아요
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		
