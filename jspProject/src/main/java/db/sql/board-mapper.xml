@@ -83,5 +83,38 @@
 	  )
 </entry>
 
+<entry key="increaseCount"> <!-- 조회수 증가 -->
+	UPDATE
+	        BOARD
+	   SET COUNT = COUNT + 1
+	 WHERE BOARD_NO = ?
+	   AND STATUS = 'Y'
+</entry>
+
+<entry key="selectBoard">	<!-- 그 게시글 조회 -->
+	SELECT
+	        BOARD_NO
+	      , CATEGORY_NAME
+	      , BOARD_TITLE
+	      , BOARD_CONTENT
+	      , USER_ID
+	      , TO_CHAR(CREATE_DATE, 'YYYY/MM/DD') "CREATE_DATE"
+	  FROM BOARD
+	  JOIN CATEGORY USING (CATEGORY_NO)
+	  JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+	 WHERE BOARD_NO = ?
+</entry>
+
+<entry key="selectAttachment">  <!-- 첨부파일 조회 -->
+	SELECT
+	        FILE_NO
+	      , ORIGIN_NAME
+	      , CHANGE_NAME
+	      , FILE_PATH
+	  FROM ATTACHMENT
+	 WHERE REF_BNO = ?
+	   AND STATUS = 'Y'
+</entry>
+
 
 </properties>

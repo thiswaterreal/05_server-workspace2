@@ -41,6 +41,19 @@ public class Board {
 		this.createDate = createDate;
 	}
 
+	
+	// 매개변수생성자(6개_게시글리스트 중 원하는 게시글 눌루했을때 나오는 상세페이지에 필요)
+	public Board(int boardNo, String category, String boardTitle, String boardContent, String boardWriter,
+			String createDate) {
+		super();
+		this.boardNo = boardNo;
+		this.category = category;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.createDate = createDate;
+	}
+
 	public int getBoardNo() {
 		return boardNo;
 	}
