@@ -64,9 +64,6 @@
                         <script>
                         	<!-- 수정하기 누를 시, 기존 카테고리 가져오기 (select) -->
                         	$(function(){
-                        		<!-- id가 update-form의 자손 option 인것에 각각 순차적으로 접근하여 함수 실행
-                        			 만약 내가 누른 이것의 안의 내용 <option>text</option> .text가 카테고리명과 같을 때
-                        			 내가 누른 이것의 속성 selected를 true로 바꾸-->
                         		$("#update-form option").each(function(){
                         			if($(this).text() == "<%=b.getCategory()%>") {
                         				$(this).attr("selected", true);
