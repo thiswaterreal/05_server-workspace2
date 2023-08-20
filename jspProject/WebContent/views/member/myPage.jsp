@@ -89,6 +89,7 @@
                 </tr>
             </table>
             
+            <!-- *** checkbox 접근해서 값 가져오기 *** -->
             <script>
             	$(function(){
             		const interest = "<%= interest %>";
@@ -124,7 +125,8 @@
     </div>
     
 	<!-- 비밀번호 변경용 Modal -->
-	<div class="modal" id="updatePwdModal">
+	<!-- data-toggle==class / data-target==id -->
+	<div class="modal" id="updatePwdModal"> 
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	
@@ -139,7 +141,7 @@
 	        
             <form action="<%= contextPath %>/updatePwd.me" method="post">
                 
-                <!-- hidden : value값 반드시 설정!!-->
+                <!-- *** hidden : value값 반드시 설정!! *** -->
                 <input type="hidden" name="userId" value="<%= userId %>">
                 
                 <table>
@@ -166,7 +168,7 @@
 	      </div>
 
           <script>
-                function vaildatePwd() {    // '변경할비밀번호' '변경할비밀번호확인' 일치하는지 확인
+                function vaildatePwd() {    // *** '변경할비밀번호' '변경할비밀번호확인' 일치하는지 확인 ***
                     if($("input[name=updatePwd]").val() != $("input[name=checkPwd]").val()) {
                         alert("변경할 비밀번호가 일치하지 않습니다!");
                         return false;
@@ -197,7 +199,7 @@
 	      <div class="modal-body" align="center">
             <form action="<%= contextPath %>/outMember.me" method="post">
             
-            	<!-- hidden : value값 반드시 설정!!-->
+            	<!-- *** hidden : value값 반드시 설정!! *** -->
                 <input type="hidden" name="userId" value="<%= userId %>">
             
                 <b>탈퇴 후 복구가 불가능 합니다. <br> 정말로 탈퇴하시겠습니까? </b> <br><br>

@@ -47,6 +47,7 @@ public class MemberOutController extends HttpServlet {
 			session.setAttribute("alertMsg", "성공적으로 회원탈퇴 되었습니다. 그동안 이용해주셔서 감사합니다.");
 			// 로그아웃 시키기 (세션에 loginMember 라는 '키값'에 해당하는걸 지우기)
 			// session.invalidate(); 불가!! 이거하면 session영역에 있는 loginMember, alertMsg 모두 지워져서 성공후 알람창도 안뜨게됨..
+			// *** 회원탈퇴처리 == session에 있는 loginMember만 지우기 ***
 			session.removeAttribute("loginMember");
 			
 			response.sendRedirect(request.getContextPath());

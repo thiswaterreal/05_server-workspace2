@@ -62,7 +62,7 @@ public class MemberUpdateController extends HttpServlet {
 			// (url재요청방식으로)
 			HttpSession session = request.getSession();
 			
-			// * session에 담겨있는 loginMember를 바꿔치기 작업 해야함 : 갱신 *
+			// *** updateMem 으로 받아와서 세션 갈아끼우기 ***
 			session.setAttribute("loginMember", updateMem);
 			session.setAttribute("alertMsg", "성공적으로 회원정보를 수정하였습니다.");
 			// 마이페이지로 이동시킴 => /jsp/myPage.me  url재요청!

@@ -77,6 +77,7 @@
                 	
                 <% } else {%>
 	                 <!-- case2. 공지글이 있을 경우 -->
+	                 <!-- *** n.getNoticeWriter() 컬럼명??(값은 넣어둔 userId이지만..) *** -->
 	                 <% for(Notice n :list) {   // n : 노티스객체 하나, 하나, ..돌면서 예쁘게 찍어 %>
 	                 <tr>
 	                    <td><%= n.getNoticeNo() %></td>
@@ -103,7 +104,8 @@
 				// 요청할url?키=벨류$키=벨류
 				// 요청시 전달값 (키=벨류) <= 쿼리스트링
 				
-				// /jsp/detail.no?num=클릭한글번호
+				// http://localhost:8001/jsp/detail.no?num=2
+				// http://localhost:8001/jsp/detail.no?num=클릭한글번호
 				location.href ='<%= contextPath %>/detail.no?num='+num;
 			})
 			

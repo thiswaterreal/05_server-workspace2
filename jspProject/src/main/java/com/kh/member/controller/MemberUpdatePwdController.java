@@ -39,7 +39,7 @@ public class MemberUpdatePwdController extends HttpServlet {
 		
 		Member updateMem = new MemberService().updatePwd(userId, userPwd, updatePwd);
 		
-		// * updateMem 으로 받아와서 세션 갈아끼우기 *
+		// *** updateMem 으로 받아와서 세션 갈아끼우기 ***
 		HttpSession session = request.getSession();
 		
 		if(updateMem == null) { // 실패
