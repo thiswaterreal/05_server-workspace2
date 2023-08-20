@@ -7,6 +7,7 @@
 	String contextPath = request.getContextPath();	// contextPath == /jsp	// root
 
 	Member loginMember = (Member)session.getAttribute("loginMember");
+	// 회원번호, 아이디, 비번, 이름, 폰번호, 이메일, 주소, 취미, 등록일, 수정일, 회원상태
 	// 로그인 시도 전 menubar.jsp 로딩시 : null
 	// 로그인 성공 후 menubar.jsp 로딩시 : 로그인 성공한 회원의 정보가 담겨있는 Member 객체
 	
