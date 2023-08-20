@@ -69,13 +69,15 @@ public class LoginController extends HttpServlet {
 			// 그 다음, 포워딩 방식
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
+			
+			
 		}else {
 			// * 조회결과 있음 == 로그인 성공!! => 메인페이지 응답 (index.jsp)
 			
 			// 로그인한 회원정보 (loginMember)를 session에 담기 (여기저기서 가져다 쓸 수 있도록!)
 			
 			// Servlet에서는 session에 접근하고자 한다면 우선 session 객체 얻어와야됨 (request 도움을 받아서)
-			HttpSession session = request.getSession();	// request야.. session객체 얻어다 줘..
+			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember); //"키",벨류(login한 멤버 정보)
 			
 			// 1. '포워딩 방식' 응답 뷰 출력

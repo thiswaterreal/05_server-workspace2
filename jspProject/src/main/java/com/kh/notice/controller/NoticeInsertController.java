@@ -42,7 +42,7 @@ public class NoticeInsertController extends HttpServlet {
 		
 		// 로그인한 회원 정보를 얻어내는 방법
 		// 1. input type = "hidden" 으로 애초에 요청시 숨겨서 전달하기
-		// 2. session 안에 담긴 loginMember 를 활용하는 방법 (8/11 12:28)
+		// 2. *** session 안에 담긴 loginMember 를 활용하는 방법 *** (8/11 12:28)
 		HttpSession session = request.getSession();
 		int userNo = ((Member)session.getAttribute("loginMember")).getUserNo(); // 반환형 object임
 	
@@ -51,7 +51,9 @@ public class NoticeInsertController extends HttpServlet {
 		n.setNoticeTitle(noticeTitle);
 		n.setNoticeContent(noticeContent);
 		
-		//n.setNoticeWriter(userNo + ""); // int형인 userNo을 => String 형으로 바꾸기
+		// *** int형인 userNo을 => String 형으로 바꾸기 *** 왜?? vo에서 짤 때, 요소들 전부 String형으로 짬
+		// (방법1) n.setNoticeWriter(userNo + "");
+		// (방법2)
 		n.setNoticeWriter(String.valueOf(userNo));
 		
 		int result = new NoticeService().insertNotice(n);

@@ -39,6 +39,7 @@
         <br>
 
         <form action="<%= contextPath %>/update.no" id="update-form" method="post">
+        	<!-- *** hidden 으로 noticeNo 가져가자 *** -->
 			<input type="hidden" name="num" value="<%= n.getNoticeNo() %>" >
             <table>
                 <tr>
@@ -62,6 +63,7 @@
             <div>
                 <button type="submit">수정하기</button>
                 <button type="button" onclick="history.back();">뒤로가기</button>
+                <!-- '뒤로가기' 초간단 : onclick="history.back(); -->
             </div>
 
         </form>
