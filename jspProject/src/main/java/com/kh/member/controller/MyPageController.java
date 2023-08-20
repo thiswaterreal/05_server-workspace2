@@ -35,11 +35,11 @@ public class MyPageController extends HttpServlet {
 		// 로그인 전 요청시 => 메인페이지 응답, alert 띄우기 => url재요청 (request x)!!!!기억!!!!
 		// 로그인 후 요청시 => 마이페이지 응답			  => 포워딩
 		
-		HttpSession session = request.getSession(); //심부름코드 세션불러와줘
+		HttpSession session = request.getSession();
 		if(session.getAttribute("loginMember") == null) { // 로그인 전
 			session.setAttribute("alertMsg", "로그인 후 이용 가능한 서비스 입니다.");
-			response.sendRedirect(request.getContextPath()); // (/jsp)메인화면으로 날라감
-		}else { // 로그인 후 (loginMember에 회원정보(m값) 담김) 마이페이지를 누를시
+			response.sendRedirect(request.getContextPath());
+		}else { // 로그인 후 (loginMember에 회원정보(m값) 담긴 상태로 메인페이지 도착해서..) 마이페이지를 누를시
 			
 			RequestDispatcher view = request.getRequestDispatcher("views/member/myPage.jsp");
 			view.forward(request, response);
