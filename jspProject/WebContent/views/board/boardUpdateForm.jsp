@@ -7,6 +7,7 @@
     
 <%
    ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
+   // 공통, 운동, ... (7개)
    Board b = (Board)request.getAttribute("b");
    // 글번호, 카테고리명, 제목, 내용, 작성자아이디, 작성일
    Attachment at = (Attachment)request.getAttribute("at");
@@ -48,9 +49,11 @@
         <br>
         <h2 align="center">일반게시판 수정하기</h2>
         <br>
-
-        <form id="update-form" action="" method="post" enctype="multipart/form-data">
-															   	 <!-- 첨부파일 포함한 form이 날아가야되니까 enctype 작성 -->
+														<!-- post방식, 첨부파일 포함한 form이 날아가야되니까 enctype 작성 -->
+        <form id="update-form" action="<%= contextPath %>/update.bo" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="bno" value="<%= b.getBoardNo() %>"/>
+			<!-- *** hidden : 게시글번호 *** -->
+			<!-- submit시 넘겨야할것 : 카테고리번호, 제목, 내용, 첨부파일 한개, '게시글번호' -->												   	 
             <table align="center">
                 <tr>
                     <th width="70">카테고리</th>
@@ -87,6 +90,8 @@
                     	<% if(at != null) { %>
 	                        <!-- 현재 이 게시글에 딸린 첨부파일이 있을 경우 -->
 	                        <%= at.getOriginName() %>
+	                        <!-- *** hidden : 파일번호 *** -->
+	                        <input type="hidden" name="originFileNo" value="<%= at.getFileNo()%>"/>
                         <% } %>
                         <input type="file" name="upfile"></td>
                 </tr>

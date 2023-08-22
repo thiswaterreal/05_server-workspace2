@@ -51,7 +51,7 @@
         <h2 align="center">일반게시판</h2>
         <br>
 
-        <!-- 로그인한 회원만 보여지는 div(글작성) -->
+        <!-- 로그인한 회원만 보여지는 div버튼(글작성) -->
         <% if(loginMember != null) { %>
 	        <div align="right" style="width: 860px;">
 	            <a href="<%= contextPath %>/enrollForm.bo" class="btn btn-sm btn-secondary">글작성</a>

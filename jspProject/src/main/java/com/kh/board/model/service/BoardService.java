@@ -103,8 +103,52 @@ public class BoardService {
 		close(conn);
 		
 		return at;
+	}
+	
+	public int updateBoard(Board b, Attachment at) {
+		Connection conn = getConnection();
 		
+		int result1 = new BoardDao().updateBoard(conn, b);
+		int result2 = 1;
+		// 둘다 값이 1일때 성공으로, commit 쳐야하니까
 		
+		if(at != null) { // 새로운 첨부파일이 있을 경우
+			
+			if(at.getFileNo() != 0) { // 기존에 첨부파일이 있을 경우 => Attachment update
+				result2 = new BoardDao().updateAttachment(conn, at);
+			}else { // 기존에 첨부파일이 없는 경우 => Attachment insert
+				result2 = new BoardDao().insertNewAttachment(conn, at);
+			}
+			
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2;
+	}
+	
+	
+	
+	public int insertThumbnailBoard(Board b, ArrayList<Attachment> list) {
+		Connection conn = getConnection();
+		
+		int result1 = new BoardDao().insertThBoard(conn, b);
+		int result2 = new BoardDao().insertAttachmentList(conn, list);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result1 * result2;
 	}
 	
 	
