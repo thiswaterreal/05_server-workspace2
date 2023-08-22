@@ -39,12 +39,11 @@ public class NoticeListController extends HttpServlet {
 		// 4) 응답뷰 지정 => 공지사항 목록 페이지 보여주기
 		//	  응답뷰 필요한 데이터는 '포워드방식'일시, request attribute 영역에 담기!
 		// 	            만약 'url재요청방식'일시, session attribute 영역에 담기!
-		
 		request.setAttribute("list", list);
-		// (이번엔 한줄로 써봄)
-		request.getRequestDispatcher("views/notice/noticeListView.jsp").forward(request, response);
-	
-	
+		
+		// db조회 후 돌아와서,
+		// (한줄로)
+		request.getRequestDispatcher("views/notice/noticeListView.jsp").forward(request, response);	
 	
 	}
 
