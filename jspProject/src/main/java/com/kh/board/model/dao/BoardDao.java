@@ -385,8 +385,8 @@ public class BoardDao {
 		try {
 			
 			for(Attachment at : list) { // at = list.get(0), at = list.get(1), ..
-				// 미완성
-				pstmt = conn.prepareStatement(sql);
+				
+				pstmt = conn.prepareStatement(sql);  // 미완성
 				
 				pstmt.setString(1, at.getOriginName());
 				pstmt.setString(2, at.getChangeName());
