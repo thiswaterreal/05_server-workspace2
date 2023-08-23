@@ -23,7 +23,6 @@ public class MemberDao {
 		String filePath = MemberDao.class.getResource("/db/sql/member-mapper.xml").getPath();
 		
 		try {
-			// prop 채우기
 			prop.loadFromXML(new FileInputStream(filePath));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -60,7 +59,7 @@ public class MemberDao {
 							   rset.getString("phone"),
 							   rset.getString("email"),
 							   rset.getString("address"),
-							   rset.getString("interest"),
+							   rset.getString("interest"),  // "운동, 요리, 게임"
 							   rset.getDate("enroll_date"),
 							   rset.getDate("modify_date"),
 							   rset.getString("status"));
@@ -250,7 +249,33 @@ public class MemberDao {
 		
 	}
 	
-	
+	// ajax 아이디 중복 체크
+	public int idCheck(Connection conn, String checkId) {
+		// select문 => ResultSet => 한개 숫자 => int
+		
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("idCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, checkId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				count = rset.getInt("count"); // count(*)을 별칭 count로 줌
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+	}
 	
 	
 }

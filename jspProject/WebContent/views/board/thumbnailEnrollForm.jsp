@@ -60,6 +60,7 @@
             </table>
 
             <div id="file-area" style="display:none;">
+            	<!-- onchange : 파일이 들어가고 빠져나가고 -->
                 <input type="file" name="file1" id="file1" onchange="loadImg(this, 1);" required>
                 <input type="file" name="file2" id="file2" onchange="loadImg(this, 2);">
                 <input type="file" name="file3" id="file3" onchange="loadImg(this, 3);">
@@ -88,7 +89,7 @@
             			// 해당 파일을 읽어들이는 순간, 해당 이 파일만의 '고유한 url' 부여해주는 코드
             			reader.readAsDataURL(inputFile.files[0]);
             			
-            			// 파일 읽어들이기가 완료 됐을 때, 실행할 함수 정의해두기
+            			// 파일 읽어들이기가 완료(onload) 됐을 때, 실행할 함수 정의해두기
             			reader.onload = function(e) {
             				// (event)e로 받고,
             				// e.target.result == 읽어들인 파일의 '고유한 url'(겁나긴거) 들어있음

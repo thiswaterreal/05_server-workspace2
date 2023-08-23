@@ -110,7 +110,16 @@ public class MemberService {
 		
 	}
 	
-	
+	// ajax 아이디 중복 체크
+	public int idCheck(String checkId) {
+		
+		Connection conn = getConnection();
+		int count = new MemberDao().idCheck(conn, checkId);
+		
+		close(conn);
+		return count;
+				
+	}
 	
 	
 }

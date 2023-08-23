@@ -406,6 +406,68 @@ public class BoardDao {
 	
 	
 	
+	public ArrayList<Board> selectThumbnailList(Connection conn) {
+		ArrayList<Board> list = new ArrayList<Board>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectThumbnailList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			// 조회결과 뽑아서 list에 담아
+			while(rset.next()) { // 2.매개변수생성자 만든걸로..
+				list.add(new Board(rset.getInt("board_no"),
+								   rset.getString("board_title"),
+								   rset.getInt("count"),
+								   rset.getString("titleimg")
+								  ));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
+	
+	public ArrayList<Attachment> selectAttachmentList(Connection conn, int boardNo) {
+		ArrayList<Attachment> list = new ArrayList<Attachment>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAttachment"); //재활용
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Attachment at = new Attachment(); // 1.기본생성자로..
+				at.setChangeName(rset.getString("change_name"));
+				at.setFilePath(rset.getString("file_path"));
+				
+				list.add(at);
+			} 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
 	
 	

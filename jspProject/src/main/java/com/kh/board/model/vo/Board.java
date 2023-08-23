@@ -12,6 +12,8 @@ public class Board {
 	private String createDate;
 	private String status;
 	
+	private String titleImg; // 대표이미지경로를 보관할 필드 (8/23 9:43)
+	
 	public Board() {}
 	
 	// 매개변수생성자(전체)
@@ -53,6 +55,27 @@ public class Board {
 		this.boardWriter = boardWriter;
 		this.createDate = createDate;
 	}
+	
+	// 내가추가
+	public Board(int boardNo, String boardTitle, int count, String titleImg) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.count = count;
+		this.titleImg = titleImg;
+	}
+	
+	
+	
+	// titleImg get set 추가
+	public String getTitleImg() {
+		return titleImg;
+	}
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
+	}
+	
 
 	public int getBoardNo() {
 		return boardNo;

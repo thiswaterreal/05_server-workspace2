@@ -100,6 +100,12 @@
 	</entry>
 
 
+	<entry key="idCheck"> <!-- ajax 아이디 중복 체크 -->
+		SELECT
+		       COUNT(*) "COUNT"
+		  FROM MEMBER
+		 WHERE USER_ID = ?
+	</entry>
 
 
 

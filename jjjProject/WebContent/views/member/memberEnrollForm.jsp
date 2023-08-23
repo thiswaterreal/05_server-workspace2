@@ -89,14 +89,14 @@
     <div class="all">
         <form action="<%= contextPath%>/insert.me" method="post">
             <!------------------------profile----------------------------->
-            <!--
+            
             <div id="profile" align="center">
                 <input type="file" name="file" id="file">
                 <label for="file">
                     <div id="file_btn"></div>
                 </label>
             </div>
-            -->
+            
     
             
             <!------------------------con1----------------------------->

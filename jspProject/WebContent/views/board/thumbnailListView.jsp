@@ -1,5 +1,10 @@
+<%@page import="com.kh.board.model.vo.Board"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +32,11 @@
         display: inline-block;
         margin: 14px;
     }
+    
+    .thumbnail:hover {
+    	cursor: pointer;
+    	opacity: 0.7;
+    }
 </style>
 
 <body>
@@ -46,33 +56,31 @@
         <% } %>
 
         <div class="list-area">
-
-            <!-- 썸네일 한개 -->
-            <div class="thumbnail" align="center">
-                <img src="이미지경로" width="200" height="150">
-                <p>
-                    No.20 운동가요(게시글제목) <br>
-                    조회수 : 500
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="이미지경로" width="200" height="150">
-                <p>
-                    No.20 운동가요(게시글제목) <br>
-                    조회수 : 500
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="이미지경로" width="200" height="150">
-                <p>
-                    No.20 운동가요(게시글제목) <br>
-                    조회수 : 500
-                </p>
-            </div>
+			<% for(Board b : list) { %>
+	            <!-- 썸네일 한개 -->
+	            <div class="thumbnail" align="center">
+	            	<!-- hidden : 내가클릭한게시글글번호 가져오기위해 (p태그 안에 있는 boardNo은 가져오기 힘들어) -->
+	            	<input type="hidden" value="<%= b.getBoardNo()%>">
+	                <img src="<%= contextPath %>/<%= b.getTitleImg() %>" width="200" height="150">
+	                <p>
+	                    No.<%= b.getBoardNo() %> <%= b.getBoardTitle() %> <br>
+	                    조회수 : <%= b.getCount() %>
+	                </p>
+	            </div>
+            <% } %>
             
         </div>
 
     </div>
+    
+    <script>
+    	$(function() {
+    		$(".thumbnail").click(function(){
+    			//location.href = "/jsp/detail.th?bno=내가클릭한게시글글번호";
+    			location.href = "<%=contextPath%>/detail.th?bno=" + $(this).children("input").val();
+    		})
+    	})
+    </script>
 
 </body>
 </html>
