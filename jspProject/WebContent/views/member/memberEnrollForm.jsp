@@ -106,21 +106,36 @@
 	
 	
 	<script>
+	
+		// *** 아이디 중복 확인 ***
 		function idCheck() {
 			// 중복확인 버튼 클릭시 사용자가 입력한 아이디값을 넘겨서 조회요청(존재하는지 안하는지) => 응답데이터 돌려받기
-			// 1) 사용 불가능일 경우 => alert로 메세지 출력, 다시 입력할 수 있도록 유도
-			// 2) 사용 가능일 경우 => 진짜 사용할껀지 의사를 물어볼것임
+			// 1) 사용 불가능일 경우 => alert로 메세지 출력, 다시 입력할 수 있도록 유도(.focus())
+			// 2) 사용 가능일 경우 => 진짜 사용할껀지 의사를 물어볼것임(confirm 메소드 => 확인:true / 취소:false)
 			// 3)			   > 사용 하겠다는 경우	=> 더 이상 아이디 수정 못하게끔, 회원가입
 			//				   > 사용 안하겠다는 경우 => 다시 입력할 수 있도록 유도
 		
 			// 아이디를 입력하는 input 요소 객체 (그 자체임. value가 아니라)
-			const $idInput = $("#enroll-form input[name=userId]");
+			const $idInput = $("#enroll-form input[name=userId]"); // enroll-form (후손) input[name=userId]
 			
 			$.ajax({
 				url:"idCheck.me",
 				data:{checkId:$idInput.val()}, // ex) user01
 				success:function(result){ // /idCheck.me 에서의 결과를 result로 받아줌
-					console.log(result);
+					//console.log(result);
+					if(result == 'NNNNN'){ // 사용 불가능
+						alert("이미 존재하거나 탈퇴한 회원의 아이디입니다.");
+						$idInput.focus(); // 다시 입력할 수 있도록 그 곳으로 포커스 해주기
+					}else { // 사용 가능 ('NNNNY')
+						if(confirm("사용가능한 아이디 입니다. 사용하시겠습니까?")) { // (확인)true
+							$("#enroll-form :submit").removeAttr("disabled");
+							// enroll-form (후손중) 타입이 :submit인것의 속성()을 제거
+							$idInput.attr("readonly", true);
+							// 더이상 수정 못하게끔
+						}else { // (취소)false
+							$idInput.focus();
+						}
+					}
 				},
 				error:function(){
 					console.log("아이디 중복체크용 ajax 통신 실패!!")
