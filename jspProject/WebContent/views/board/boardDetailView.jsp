@@ -122,7 +122,10 @@
 			<script>
                 
                 $(function(){
-                    selectReplyList(); // 모든 그림 다 그려지고 selectReplyList() 호출
+                    selectReplyList(); // 모든 그림 다 그려지고 selectReplyList() 댓글조회용 호출
+                    
+                    //setInterval(특정함수, 특정시간);
+                    setInterval(selectReplyList, 1000);
                 })
 
                 

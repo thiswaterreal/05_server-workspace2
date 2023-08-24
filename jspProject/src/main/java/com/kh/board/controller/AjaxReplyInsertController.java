@@ -34,7 +34,7 @@ public class AjaxReplyInsertController extends HttpServlet {
 		String replyContent = request.getParameter("content");
 		int boardNo = Integer.parseInt(request.getParameter("bno"));
 		int userNo = ((Member)request.getSession().getAttribute("loginMember")).getUserNo();
-					// request.getSession().getAttribute("loginMember") : Object형. 따라서 형변환 필요
+						   // request.getSession().getAttribute("loginMember") : Object형. 따라서 형변환 필요
 		
 		Reply r = new Reply(); // 기본생성자
 		r.setReplyContent(replyContent);
