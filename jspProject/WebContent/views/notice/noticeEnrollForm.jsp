@@ -1,5 +1,8 @@
+<%@page import="com.kh.notice.model.vo.Notice"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +36,10 @@
         <br>
 
         <form action="<%= contextPath %>/insert.no" id="enroll-form" method="post">
-
+			
+			<!-- 방법1) *** hidden 으로 userNo 가져가자 *** -->
+			<input type="hidden" name="userNo" value="<%= loginMember.getUserNo() %>" >
+			
             <table>
                 <tr>
                     <th width="50">제목</th>

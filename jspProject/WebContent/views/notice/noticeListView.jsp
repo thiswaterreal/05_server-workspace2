@@ -98,7 +98,7 @@
     
 
 	<script>
-		$(function() {
+		$(function(){
 			$(".list-area>tbody>tr").click(function() {
 				
 				const num = $(this).children().eq(0).text();
