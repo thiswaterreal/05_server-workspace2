@@ -43,7 +43,8 @@ public class NoticeDao {
 			rset = pstmt.executeQuery(); // 쿼리 돌리고 담는거 잊지마!
 			
 			while(rset.next()) { // *** 커서가 계속 돌도록 while 반복문 돌루!! (여러행 조회) ***
-				//list.add(노티스객체만드는구문);
+				//list.add(노티스객체만드는구문());
+				//list.add(new Notice());
 				list.add(new Notice(rset.getInt("notice_no"),
 									rset.getString("notice_title"),
 									rset.getString("user_id"), // *** notice_writer (x)!! 조심!! (NOTICE_WRITER = USER_NO)로 두 테이블 조인했으니까 user_id 가져올수있음!!

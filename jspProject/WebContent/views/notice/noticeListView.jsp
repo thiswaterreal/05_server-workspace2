@@ -7,7 +7,7 @@
 	// NoticeListController에서 .setAttribute 해둔 키-벨류 던진거 받기
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list"); // object반환형
 %>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,8 +32,6 @@
         background-color: gray;
         cursor: pointer;
     }
-
-
 
 </style>
 
@@ -77,21 +75,27 @@
                 	
                 <% } else {%>
 	                 <!-- case2. 공지글이 있을 경우 -->
-	                 <!-- *** n.getNoticeWriter() 컬럼명??(값은 넣어둔 userId이지만..) *** -->
-	                 <% for(Notice n :list) {   // n : 노티스객체 하나, 하나, ..돌면서 예쁘게 찍어 %>
-	                 <tr>
-	                    <td><%= n.getNoticeNo() %></td>
-	                    <td><%= n.getNoticeTitle() %></td>
-	                    <td><%= n.getNoticeWriter() %></td>
-	                    <td><%= n.getCount() %></td>
-	                    <td><%= n.getCreateDate() %></td>
-	                 </tr>
+	                 <!-- *** n.getNoticeWriter() vo에 적어뒀던 껍데기명으로!! (알맹이는 userId) *** -->
+	                 <% for(Notice n :list) {   // n : notice객체 하나, 하나, ..돌면서 예쁘게 찍어 %>
+		                 <tr>
+		                    <td><%= n.getNoticeNo() %></td>
+		                    <td><%= n.getNoticeTitle() %></td>
+		                    <td><%= n.getNoticeWriter() %></td>
+		                    <td><%= n.getCount() %></td>
+		                    <td><%= n.getCreateDate() %></td>
+		                 </tr>
 	                 <% } %>
                  <% } %>
                  
+                 <!-- list : 반복할 컬렉션 -->
+                 <!-- Notice : 컬렉션 내 요소의 타입 (n의 타입) -->
+                 <!-- 루프가 실행될 때마다 "n"은 "list"에 있는 각 요소를 순서대로 나타냄 (n : 해당 행 => 제목, 작성자, 등록일, ..) -->
+                 <!-- n.어쩌구저쩌구 : 해당 행 속 컬럼에 접근하는 것 -->
+	      	 
             </tbody>
         </table>
     </div>
+    
 
 	<script>
 		$(function() {

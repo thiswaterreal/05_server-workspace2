@@ -7,8 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
+	
+	<!-- semi 테스트용 -->
 	<%@ include file="views/member/memberEnrollForm.jsp" %>
+
+	
+	
 
 </body>
 </html>
