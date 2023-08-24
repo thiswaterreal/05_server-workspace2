@@ -111,6 +111,7 @@
 				// http://localhost:8001/jsp/detail.no?num=2
 				// http://localhost:8001/jsp/detail.no?num=클릭한글번호
 				location.href ='<%= contextPath %>/detail.no?num='+num;
+				// 이러면 자동 키값 "num" 으로 해당 값이 controller로 넘어감
 			})
 			
 		})

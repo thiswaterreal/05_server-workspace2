@@ -51,7 +51,7 @@ public class NoticeUpdateController extends HttpServlet {
 			// (한줄로)
 			request.getSession().setAttribute("alertMsg", "성공적으로 공지사항 수정 되었습니다.");
 			
-			response.sendRedirect(request.getContextPath() + "/detail.no?num=" + noticeNo);
+			response.sendRedirect(request.getContextPath() + "/detail.no?num=" + noticeNo); // controller부터 시작해서 조회해서 jsp에 수정한사항 반영된 값 뿌려줌
 			
 		} else { // 실패
 			request.setAttribute("errorMsg", "공지사항 수정에 실패했습니다.");

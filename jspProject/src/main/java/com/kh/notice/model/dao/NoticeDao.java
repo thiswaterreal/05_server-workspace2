@@ -136,6 +136,7 @@ public class NoticeDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
+			 // n = new Notice();
 				n = new Notice(rset.getInt("notice_no"),
 							   rset.getString("notice_title"),
 							   rset.getString("notice_content"),
