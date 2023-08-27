@@ -75,9 +75,9 @@ public class ThumbnailInsertController extends HttpServlet {
 					at.setChangeName(multiRequest.getFilesystemName(key));
 					at.setFilePath("resources/thumbnail_upfiles");
 					
-					if(i == 1) { // 대표이미지(1) 일 경우 => FileLever : 1
+					if(i == 1) { // 대표이미지(1) 일 경우 => FileLevel : 1
 						at.setFileLevel(1);
-					}else { // 상세이미지(2,3,4) 일 경우 => FileLever : 2
+					}else { // 상세이미지(2,3,4) 일 경우 => FileLevel : 2
 						at.setFileLevel(2);
 					}
 					
