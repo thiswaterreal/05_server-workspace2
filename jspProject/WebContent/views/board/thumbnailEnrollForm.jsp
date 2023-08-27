@@ -75,7 +75,7 @@
             	
             	function loadImg(inputFile, num) {
             		// 예:(this, 1)
-            		// inputFile : 현재 변화가 생긴 input type = 그 "file" 요소 객체
+            		// inputFile : (==this)현재 변화가 생긴 input type = 그 "file" 요소 객체
             		// num : 몇번째 input 요소인지 확인 후 해당 그 영역에 미리보기 하기 위해 전달받는 숫자
             		
             		// 선택된 파일이 있다면 inputFile.files[0]에 선택된 파일이 담겨 있음
@@ -86,12 +86,12 @@
             			const reader = new FileReader();
             			
             			// 파일을 읽어들이는 메소드 호출
-            			// 해당 파일을 읽어들이는 순간, 해당 이 파일만의 '고유한 url' 부여해주는 코드
+            			// 해당 파일을 읽어들이는 순간, inputFile.files[0]에 담긴 이 파일만의 '고유한 url'(겁나긴거) 부여해주는 코드
             			reader.readAsDataURL(inputFile.files[0]);
             			
             			// 파일 읽어들이기가 완료(onload) 됐을 때, 실행할 함수 정의해두기
             			reader.onload = function(e) {
-            				// (event)e로 받고,
+            				// (event)는 기본적으로 항상 있는 존재.. 우린 부여받은 '고유한 url' 필요하니까 e로 받고, (script에서 매개변수의 자료형은 필요x)
             				// e.target.result == 읽어들인 파일의 '고유한 url'(겁나긴거) 들어있음
             				
             				switch(num) {
