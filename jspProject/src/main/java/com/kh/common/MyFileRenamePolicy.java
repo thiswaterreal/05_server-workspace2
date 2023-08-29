@@ -30,7 +30,8 @@ public class MyFileRenamePolicy implements FileRenamePolicy { // FileRenamePolic
 		// 이제 모두 합쳐요~
 		String changeName = currentTime + ranNum + ext;
 		
-		return new File(originFile.getParent(), changeName); // 원본의 디렉토리를 알아낸 후 변경된 이름으로 저장하는 메소드 : new File(원본디렉토리, 변경이름)
+		return new File(originFile.getParent(), changeName); 
+		// 원본의 디렉토리를 알아낸 후 변경된 이름으로 저장하는 메소드 : new File(원본디렉토리, 변경이름)
 	}
 
 }
