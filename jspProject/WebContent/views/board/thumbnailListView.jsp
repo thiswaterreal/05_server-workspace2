@@ -76,7 +76,8 @@
     <script>
     	$(function() {
     		$(".thumbnail").click(function(){
-    			//location.href = "/jsp/detail.th?bno=내가클릭한게시글글번호";
+    			//location.href = "/jsp/detail.th?bno=내가클릭한게시글글번호";		// bno = ""
+    			//localhost:8001   /jsp/detail.th?bno=118					// 키값 = value	// controller로 넘어갈
     			location.href = "<%=contextPath%>/detail.th?bno=" + $(this).children("input").val();
     		})
     	})

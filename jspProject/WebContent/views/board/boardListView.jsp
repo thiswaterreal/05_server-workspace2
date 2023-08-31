@@ -120,7 +120,7 @@
             <% if(currentPage != maxPage) { %>
             	<button onclick="location.href='<%= contextPath %>/list.bo?cpage=<%= currentPage +1 %>'">&gt;</button>
         	<% } %>
-        	
+
         </div>
 
 
