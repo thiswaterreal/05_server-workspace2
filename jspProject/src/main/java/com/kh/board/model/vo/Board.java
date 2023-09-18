@@ -7,7 +7,7 @@ public class Board {
 	private String category; // 작성기능시 카테고리번호 | 조회기능시 카테고리명 
 	private String boardTitle;
 	private String boardContent;
-	private String boardWriter; // 작성기능시 회원번호 | 조회기능시 회원아이디명
+	private String boardWriter; // 작성기능시 회원번호 | 조회기능시 회원아이디명(userId) (userNo==boardWriter)
 	private int count;
 	private String createDate;	// String형
 	private String status;

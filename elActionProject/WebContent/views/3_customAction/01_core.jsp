@@ -77,6 +77,7 @@
 	
 	<c:set var="outTest" value="<b>출력테스트</b>"/>
 	
+	그냥 : ${ outTest } <br>
 	<c:out value="${ outTest }"/><br> 					<!-- escapeXml 생략시, 기본값이 true == 태그 해석 안됨(문자열로 취급) --> 
 	<c:out value="${ outTest }" escapeXml="false"/><br>
 	
@@ -196,6 +197,7 @@
 	
 	<%	
 		// 테스트 위해 임의로 배열 하나 맹글기 (사실 servlet에서 받아온 배열 뿌리기)
+		// 객체배열
 		ArrayList<Person> list = new ArrayList<Person>();
 		list.add(new Person("차은우", 20, "남자"));
 		list.add(new Person("주지훈", 40, "남자"));

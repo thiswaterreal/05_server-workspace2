@@ -31,7 +31,7 @@
 	=> 동일한 이름의 변수로 재선언 가능 <br><br>
 	<% int year = 2021; %>
 	
-	특징2 : 포함시, include 하는 페이지로 값 전달 가능
+	특징2 : 포함시, include 하는 페이지로 값 전달 가능 (jsp:param)
 	<jsp:include page="footer.jsp">
 		<jsp:param value="Hello" name="test"/>
 	</jsp:include>
