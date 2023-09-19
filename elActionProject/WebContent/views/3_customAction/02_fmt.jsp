@@ -3,8 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -28,14 +28,16 @@
 	<c:set var="num3" value="50000"/>	
 	
 	그냥 출력 : ${ num1 } <br>
-	세자리마다 구분하여 출력 : <fmt:formatNumber value="${ num1 }" /> <br> <!-- groupingUsed기본값 : true -->
-	숫자 그대로 출력 : <fmt:formatNumber value="${ num1 }" groupingUsed="false"/> <br>
-	<!-- groupingUsed : 세자리마다 구분자(,) 표시 여부 지정 -->
+		<!-- groupingUsed : 세자리마다 구분자(,) 표시 여부 지정 -->
+	세자리마다 구분하여 출력	: <fmt:formatNumber value="${ num1 }" /> 				 	 <br> <!-- groupingUsed기본값 : true -->
+	숫자 그대로 출력			: <fmt:formatNumber value="${ num1 }" groupingUsed="false"/> <br>
 	
-	percent : <fmt:formatNumber value="${ num2 }" type="percent"/> <br>
-	currency : <fmt:formatNumber value="${ num3 }" type="currency"/> <br>
+	percent			: <fmt:formatNumber value="${ num2 }" type="percent"/> <br>
+	currency		: <fmt:formatNumber value="${ num3 }" type="currency"/> <br>
 	currency(구분자X) : <fmt:formatNumber value="${ num3 }" type="currency" groupingUsed="false"/> <br>
-	currency($) : <fmt:formatNumber value="${ num3 }" type="currency" currencySymbol="$"/>
+	currency($) 	: <fmt:formatNumber value="${ num3 }" type="currency" currencySymbol="$"/>
+	
+	
 	<!-- 
 		type : 백분율(%), 통화기호 형식 지정
 		currencySymbol : 통화기호 문자 지정
