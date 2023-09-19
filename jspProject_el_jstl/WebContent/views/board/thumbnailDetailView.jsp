@@ -65,9 +65,16 @@
                 <td colspan="3">
                     <div>
 	                    <!-- 대표사진은(0번) 제외하고, 상세사진만(1,2,3번) 나와야하니까 i=1(o)부터 -->
+	                    <c:forEach var="i" begin="1" end="${ list.size() - 1 }">
+	                		<img src="${ list.get(i).filePath }/${ list.get(i).changeName }" width="200" height="150">
+	                    </c:forEach>
+	                    
+	                    <!-- 이렇게하면 대표+상세 다 들어가짐 (따라서 이렇게 쓰면 안됨)
 	                    <c:forEach var="i" items="${ list }">
 	                    	<img src="${ i.filePath }/${ i.changeName }" width="200" height="150">
 	                    </c:forEach>
+	                     -->
+	                    
                     </div>
                 </td>
                 
