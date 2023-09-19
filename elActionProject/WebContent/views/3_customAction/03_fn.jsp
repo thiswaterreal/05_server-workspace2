@@ -30,12 +30,13 @@
 	
 	<c:set var="str" value="How are you?"/>
 	
+	
+	
 	str : ${ str } <br>
 	
-	문자열의 길이 : ${ str.length() } 		<br>
-	문자열의 길이 : ${ fn:length(str) } 	<br> <!-- arrayList도 제시 가능함 => 리스트의 사이즈 -->
-	
-	list배열의 길이 : ${ fn:length(pList) } 	<br> <!-- arrayList도 제시 가능함 => 리스트의 사이즈 -->
+	문자열의 길이	: ${ str.length() } 		<br>
+	문자열의 길이	: ${ fn:length(str) } 		<br> <!-- arrayList도 제시 가능함 => 리스트의 사이즈 -->
+	list배열의 길이	: ${ fn:length(pList) } 	<br> <!-- arrayList도 제시 가능함 => 리스트의 사이즈 -->
 
 	모두 대문자로 출력 : ${ fn:toUpperCase(str) } <br>
 	모두 소문자로 출력 : ${ fn:toLowerCase(str) } <br>
