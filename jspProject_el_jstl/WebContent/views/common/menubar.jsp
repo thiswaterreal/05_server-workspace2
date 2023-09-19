@@ -4,9 +4,7 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<% 
-	String contextPath = request.getContextPath();	// contextPath == /jsp	// root	
-%>
+
 
 <!DOCTYPE html>
 <html>
@@ -91,7 +89,7 @@
 			<c:when test="${ empty loginMember }">
 	
 		        <!-- case1. 로그인 전 -->
-		        <form action="<%= contextPath %>/login.me" method="post">
+		        <form action="login.me" method="post">
 		            <table>
 		                <tr>
 		                    <th>아이디 </th>
@@ -110,13 +108,11 @@
 		            </table>
 		            <script>
 		            	function enrollPage() {	<!-- 회원가입 버튼 누르면 -->
-		            		// location.href = "<%= contextPath%>/views/member/memberEnrollForm.jsp";
-		            		// http://localhost:8001/jsp/views/member/memberEnrollForm.jsp
 		            		// 웹 애플리케이션의 디렉토리 구조가 url에 노출되면 보안에 취약. 따라서 이거 안쓰고
 		            		
 		            		// 단순한 페이지 요청도 servlet 호출해서 servlet 거쳐갈 것! (즉, url에는 서블릿 매핑값만 노출)
 		            		// http://localhost:8001/jsp/enrollForm.me
-		            		location.href = "<%= contextPath%>/enrollForm.me";
+		            		location.href = "enrollForm.me";
 		            	}
 		            </script>
 		        </form>
@@ -127,8 +123,8 @@
 		        <div>
 		            <b>${ loginMember.userName }님</b>의 방문을 환영합니다. <br><br>
 		            <div align="center">
-		                <a href="<%= contextPath %>/myPage.me">마이페이지</a>
-		                <a href="<%= contextPath %>/logout.me">로그아웃</a>
+		                <a href="myPage.me">마이페이지</a>
+		                <a href="logout.me">로그아웃</a>
 		            </div>
 		        </div>
 		    </c:otherwise>
@@ -143,10 +139,10 @@
 	        <br>
 	
 	        <div class="nav-area" align="center">
-	            <div class="menu"><a href="<%= contextPath %>">HOME</a></div>
-	            <div class="menu"><a href="<%= contextPath %>/list.no">공지사항</a></div>
-	            <div class="menu"><a href="<%= contextPath %>/list.bo?cpage=1">일반게시판</a></div>
-	            <div class="menu"><a href="<%= contextPath %>/list.th">사진게시판</a></div>
+	            <div class="menu"><a href="${ pageContext.request.contextPath }">HOME</a></div>
+	            <div class="menu"><a href="list.no">공지사항</a></div>
+	            <div class="menu"><a href="list.bo?cpage=1">일반게시판</a></div>
+	            <div class="menu"><a href="list.th">사진게시판</a></div>
 	        </div>
 
 		

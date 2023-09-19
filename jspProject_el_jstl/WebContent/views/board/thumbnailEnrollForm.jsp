@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,16 +29,16 @@
 </head>
 <body>
 
-	<%@ include file = "../common/menubar.jsp" %>
+	<jsp:include page="../common/menubar.jsp"/>
 
     <div class="outer">
         <br>
         <h2 align="center">사진게시판 작성하기</h2>
         <br>
 
-        <form action="<%= contextPath %>/insert.th" id="enroll-form" method="post" enctype="multipart/form-data">
+        <form action="insert.th" id="enroll-form" method="post" enctype="multipart/form-data">
 			<!-- *** hidden : userNo == BOARD_WRITER *** -->
-			<input type="hidden" name="userNo" value="<%= loginMember.getUserNo() %>"/>
+			<input type="hidden" name="userNo" value="${ loginMember.userNo }"/>
 			
             <table align="center">
                 <tr>
@@ -110,9 +114,7 @@
 	    					case 3: $("#contentImg2").attr("src", null); break;
 	    					case 4: $("#contentImg3").attr("src", null); break;
     					}
-            		}
-            					 
-            					 
+            		}		 
             	}
             
             </script>

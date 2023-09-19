@@ -22,15 +22,14 @@
 <body>
 
 	<!-- 메뉴바 파일 가져오기 (../ == 뒤로가기) -->
-	<%@ include file="../common/menubar.jsp" %>
-	
+	<jsp:include page="../common/menubar.jsp"/>
 	
     <div class="outer">
 
         <br>
         <h2 align="center">회원가입</h2>
 
-        <form id="enroll-form" action="<%=contextPath %>/insert.me" method="post"> <!-- 회원가입 : POST -->
+        <form id="enroll-form" action="insert.me" method="post"> <!-- 회원가입 : POST -->
             <table>
                 <tr>
                     <td>* 아이디</td>

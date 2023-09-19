@@ -21,48 +21,42 @@
 </head>
 <body>
 
-	<%@ include file = "../common/menubar.jsp" %>
+
+	<jsp:include page="../common/menubar.jsp"/>
+	
 	<!-- *** menubar.jsp 에서 상단에 선언해뒀기때문에 여기서도 'loginMember' 맘대로 사용 가능 *** -->
 	<!-- 마이페이지는 당연히 로그인 후 접근가능한 페이지니까, menubar.jsp의 loginMember에는 로그인 성공한 그 회원의 정보가 담겨있음. 따라서 뽑아쓰기 가능 -->
-	<%
-		String userId = loginMember.getUserId();
-		String userName = loginMember.getUserName();
-		String phone = (loginMember.getPhone() == null) ? "" : loginMember.getPhone();
-		String email = (loginMember.getEmail() == null) ? "" : loginMember.getEmail();
-		String address = (loginMember.getAddress() == null) ? "" : loginMember.getAddress();
-		String interest = (loginMember.getInterest() == null) ? "" : loginMember.getInterest();
-		// "운동,등산,영화" | ""
-	%>
+
 
     <div class="outer">
 
         <br>
         <h2 align="center">마이페이지</h2>
 
-        <form id="myPage-form" action="<%= contextPath %>/update.me" method="post"> <!-- 마이페이지 : POST -->
+        <form id="myPage-form" action="update.me" method="post"> <!-- 마이페이지 : POST -->
             <table>
                 <tr>
                     <td>* 아이디</td>
-                    <td><input type="text" name="userId" maxlength="12" value="<%= userId %>" readonly></td> <!-- readonly : 수정할수없도록 -->
+                    <td><input type="text" name="userId" maxlength="12" value="${ loginMember.userId }" readonly></td> <!-- readonly : 수정할수없도록 -->
                 </tr>
                 <tr>
                     <td>* 이름</td>
-                    <td><input type="text" name="userName" maxlength="6" value="<%= userName %>" required></td>
+                    <td><input type="text" name="userName" maxlength="6" value="${ loginMember.userName }" required></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;전화번호</td>
-                    <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="<%= phone %>"></td>
+                    <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="${ loginMember.phone }"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;이메일</td>
-                    <td><input type="email" name="email" value="<%= email %>"></td>
+                    <td><input type="email" name="email" value="${ loginMember.email }"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;주소</td>
-                    <td><input type="text" name="address" value="<%= address %>"></td>
+                    <td><input type="text" name="address" value="${ loginMember.address }"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -92,7 +86,7 @@
             <!-- *** checkbox 접근해서 값 가져오기 *** -->
             <script>
             	$(function(){
-            		const interest = "<%= interest %>";
+            		const interest = "${ loginMember.interest }";
             		// 현재 로그인한 회원의 관심분야들이 담겨있음
             		// "운동,등산,게임" | ""
             		//console.log("관심분야 : " + interest);
@@ -140,10 +134,10 @@
 	      <!-- Modal body -->
 	      <div class="modal-body" align="center">
 	        
-            <form action="<%= contextPath %>/updatePwd.me" method="post">
+            <form action="updatePwd.me" method="post">
                 
                 <!-- *** hidden : value값 반드시 설정!! *** -->
-                <input type="hidden" name="userId" value="<%= userId %>">
+                <input type="hidden" name="userId" value="${ loginMember.userId }">
                 
                 <table>
                     <tr>
@@ -198,10 +192,10 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body" align="center">
-            <form action="<%= contextPath %>/outMember.me" method="post">
+            <form action="outMember.me" method="post">
             
             	<!-- *** hidden : value값 반드시 설정!! *** -->
-                <input type="hidden" name="userId" value="<%= userId %>">
+                <input type="hidden" name="userId" value="${ loginMember.userId }">
             
                 <b>탈퇴 후 복구가 불가능 합니다. <br> 정말로 탈퇴하시겠습니까? </b> <br><br>
                 

@@ -1,10 +1,8 @@
 <%@page import="com.kh.notice.model.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-   Notice n = (Notice)request.getAttribute("n");
-   //n : 글번호, 글제목, 내용, 작성자아이디, 작성일
-%>    
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html>
 <html>
@@ -38,13 +36,13 @@
         <h2>공지사항 작성하기</h2>
         <br>
 
-        <form action="<%= contextPath %>/update.no" id="update-form" method="post">
+        <form action="update.no" id="update-form" method="post">
         	<!-- *** hidden 으로 noticeNo 가져가자 *** -->
-			<input type="hidden" name="num" value="<%= n.getNoticeNo() %>" >
+			<input type="hidden" name="num" value="${ n.noticeNo }" >
             <table>
                 <tr>
                     <th width="50">제목</th>
-                    <td width="450"><input type="text" name="title" required value="<%= n.getNoticeTitle() %>"></td>
+                    <td width="450"><input type="text" name="title" required value="${ n.noticeTitle }"></td>
                 </tr>
 
                 <tr>
@@ -53,7 +51,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <textarea name="content" rows="10" style="resize: none;" required><%= n.getNoticeContent() %></textarea>
+                        <textarea name="content" rows="10" style="resize: none;" required>${ n.noticeContent }</textarea>
                     </td>
                 </tr>
             </table>
